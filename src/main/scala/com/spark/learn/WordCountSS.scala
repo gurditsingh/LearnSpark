@@ -1,11 +1,11 @@
-package com.spark.test
+package com.spark.learn
 
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
  * Created by GURDIT_SINGH
  */
-object WordCount {
+object WordCountSS {
   
   def wordCount(sc:SparkContext,input:String,output:String)={
     val textFile=sc.textFile(input)
