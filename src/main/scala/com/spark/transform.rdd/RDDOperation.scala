@@ -41,6 +41,15 @@ class RDDOperation {
     result.collect().map(x=>show(x._1+"="+x._2))
   }
 
+  def cartesian(sc: SparkContext) = {
+    val list1 = List("hello","world")
+    val list2 = List("hello","world")
+    val text1 = sc.parallelize(list1)
+    val text2 = sc.parallelize(list2)
+    val result =text1.map(x=>(x,1)).cartesian(text2.map(x=>(x,1)))
+    result.collect().map(x=>show(x._1+"="+x._2))
+  }
+
   def show(value: String) = {
     println("------" + value)
   }
@@ -52,6 +61,6 @@ object RDDOperation {
     val sc = new SparkContext(conf)
     val obj = new RDDOperation
 //    obj.distinct(sc)
-    obj.subtract(sc)
+    obj.cartesian(sc)
   }
 }
